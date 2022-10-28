@@ -1,0 +1,45 @@
+ <div class="link-grid">
+        <div class="container marketing">
+            <div class="container" style="margin-bottom: 50px; margin-top: 40px;">
+                <!-- Three columns of text below the carousel -->
+                <div class="row">
+                    <div class="col-lg-4" style="margin-top: 40px; text-align: center;">
+                        <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
+                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
+                            preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Engineering</title>
+                            <image height="100%" xlink:href="images/engineering.jpg" />
+                        </svg>
+
+                        <h2 class="fw-normal">Engineering Solutions</h2>
+                        <p>30+ years of product development knowledge in Med Device</p>
+                        <p><a class="btn btn-secondary" href="services.html">View details »</a></p>
+                    </div><!-- /.col-lg-4 -->
+                    <div class="col-lg-4" style="margin-top: 40px; text-align: center;">
+                        <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
+                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
+                            preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Manufacturing</title>
+                            <image height="100%" xlink:href="images/millV.jpeg" />
+                        </svg>
+
+                        <h2 class="fw-normal">Manufacturing Support</h2>
+                        <p>Proven manufacturing process to support prototyping and production</p>
+                        <p><a class="btn btn-secondary" href="#">View details »</a></p>
+                    </div><!-- /.col-lg-4 -->
+                    <div class="col-lg-4" style="margin-top: 40px; text-align: center;">
+                        <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
+                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
+                            preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Quality</title>
+                            <image height="100%" xlink:href="images/XM2.jpg" />
+                        </svg>
+
+                        <h2 class="fw-normal">Robust Quality Control</h2>
+                        <p>Cutting Edge inspection technology</p>
+                        <p><a class="btn btn-secondary" href="#">View details »</a></p>
+                    </div><!-- /.col-lg-4 -->
+                </div>
+            </div>
+        </div>
+    </div>
