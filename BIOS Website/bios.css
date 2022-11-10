@@ -26,7 +26,10 @@ video {
 }
 
 body {
-    background-color: rgb(0, 0, 0) !important;
+    background-image: url("images/Background 3.jpg");
+    height: 100%;
+    background-position: center;
+    background-size: cover;
 }
 
 .material-symbols-outlined {
