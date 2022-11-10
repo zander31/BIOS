@@ -113,6 +113,11 @@ img {
 
 .img-size {
     max-height: 400px;
+    min-height: 400px;
+}
+
+.building {
+    max-height: 600px !important;
 }
 
 .space {
@@ -127,5 +132,4 @@ img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
 }
