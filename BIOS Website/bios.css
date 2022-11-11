@@ -25,11 +25,16 @@ video {
     opacity: 0.75;
 }
 
-body {
+.bgi {
+
     background-image: url("images/Background 3.jpg");
     height: 100%;
     background-position: center;
     background-size: cover;
+}
+
+.bgc {
+    background-color: #232428 !important;
 }
 
 .material-symbols-outlined {
@@ -53,7 +58,7 @@ header {
 
 .grid-container {
     display: grid;
-    grid-gap: 10px;
+    grid-gap: 0px;
 }
 
 .video-grid {
@@ -120,7 +125,8 @@ img {
 }
 
 .building {
-    max-height: 450px !important;
+    max-height: 460px !important;
+    width: auto;
 }
 
 .space {
