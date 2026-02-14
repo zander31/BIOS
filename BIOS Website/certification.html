@@ -1,41 +1,44 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Single Source for Medical Manufacturing</title>
-    <meta name="description" content="BIOS Medical, manufacturing, engineering services for the medical industry. ">
-    <!-- Local Stylesheet -->
-    <link rel="stylesheet" id="main-styles-css" href="bios.css" type="text/css" media="all">
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/navbars/">
-    <!-- Bootstrap CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <!-- Tab Icon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <!-- Google Font for Title -->
-    <link rel="preconnect" href="https://fonts.googleapis.com/css2">
-    <link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet'>
+    <title>ISO 13485 Certification — BIOS Medical</title>
+    <meta name="description"
+        content="BIOS Medical is ISO 13485 certified. View our certification for medical device quality management systems.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-        crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="bios.css" type="text/css" media="all">
+
+    <!-- Tab Icon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
 </head>
 
-<body class="bgi">
-    <header class="nav-grid site-header sticky-top">
-        <nav class="container navbar navbar-expand-lg d-flex flex-column flex-md-row justify-content-between">
+<body class="page-bg">
+
+    <!-- ===== Navigation ===== -->
+    <header class="site-header sticky-top" id="siteHeader">
+        <nav class="container navbar navbar-expand-lg">
             <div class="container-fluid">
-                <a href="homepage.html" style="margin-right: 20px;"
-                    class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                    <img src="Logo_PNG.png" width="120" height="100%">
+                <a href="homepage.html" class="nav-logo d-flex align-items-center text-white text-decoration-none">
+                    <img src="Logo_PNG.png" width="100" height="auto" alt="BIOS Medical Logo">
                 </a>
-                <button class="btn btn-secondary navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                <button class="btn navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-                    <span class="material-symbols-outlined" style="color: white;">menu</span>
+                    <span class="material-symbols-outlined" style="color: white; font-size: 28px;">menu</span>
                 </button>
                 <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
                     aria-labelledby="offcanvasDarkNavbarLabel">
@@ -46,50 +49,215 @@
                     </div>
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                            <li class="nav-item"><a href="homepage.html" class="nav-link px-2 text-secondary">Home</a>
+                            <li class="nav-item">
+                                <a href="homepage.html" class="nav-link text-white">Home</a>
                             </li>
-                            <li class="nav-item"><a href="about.html" class="nav-link px-2 text-white">About</a></li>
-                            <li class="nav-item"><a href="certification.html"
-                                    class="nav-link px-2 text-white">Certification</a></li>
+                            <li class="nav-item">
+                                <a href="about.html" class="nav-link text-white">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="certification.html" class="nav-link active-link text-white">Certification</a>
+                            </li>
                         </ul>
-
-                        <div class="justify-content-end flex-grow-1 pe-3">
-                            <a href="mailto: carey@biospdc.com" type="submit" class="btn red">Request a
-                                Quote</a>
+                        <div class="d-flex align-items-center ms-lg-3">
+                            <a href="mailto:carey@biospdc.com" class="btn-primary-custom">Request a Quote</a>
                         </div>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
-    <div>
-        <h1 style="padding-top: 40px; text-align: center; color: #fff;">ISO 13485 Certified</h1>
-    </div>
-    <div class="space"></div>
-    <div>
-        <iframe class="center" src="ISO.pdf" width="800" height="1000">
-        </iframe>
-    </div>
-    <div class="space-bottom"></div>
-    <footer class="mt-auto text-white-50" style="text-align: center; padding-bottom: 40px;">
-        <p>Follow <a href="https://www.linkedin.com/company/bios-medicalmanufacturing/" class="text-white">BIOS
-                MEDICAL</a> <svg style="margin-left: 4px; margin-bottom: 4px; color: #0d6efd;"
-                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin"
-                viewBox="0 0 16 16">
-                <path
-                    d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z">
-                </path>
-            </svg></p>
+
+    <!-- ===== Certification Hero ===== -->
+    <section class="cert-hero">
+        <div class="cert-badge reveal">
+            <div class="cert-badge-icon">
+                <span class="material-symbols-outlined">verified</span>
+            </div>
+            <span class="cert-badge-text">Certified Quality</span>
+        </div>
+        <h1>ISO 13485 Certified</h1>
+        <p class="section-description mx-auto" style="text-align: center;">BIOS Medical maintains ISO 13485
+            certification for our Quality Management System, ensuring the highest standards in medical device
+            manufacturing.</p>
+    </section>
+
+    <hr class="glow-line">
+
+    <!-- ===== What ISO 13485 Means ===== -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 reveal-left">
+                    <span class="section-label">Our Commitment</span>
+                    <h2 class="section-heading">What This Means for You</h2>
+                    <hr class="section-divider">
+                    <p>ISO 13485 is the internationally recognized standard for quality management systems in the medical
+                        device industry. Our certification demonstrates our commitment to consistently meeting customer
+                        and regulatory requirements.</p>
+                    <p>This certification covers the entire lifecycle of our manufacturing process, from design input and
+                        material sourcing through production, inspection, and delivery.</p>
+                </div>
+                <div class="col-lg-6 reveal-right">
+                    <div class="row g-4 stagger-children">
+                        <div class="col-sm-6">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <span class="material-symbols-outlined">shield</span>
+                                </div>
+                                <h3>Regulatory Compliance</h3>
+                                <p>Meeting FDA and international regulatory requirements for medical devices.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <span class="material-symbols-outlined">monitoring</span>
+                                </div>
+                                <h3>Process Control</h3>
+                                <p>Validated manufacturing processes with documented controls and traceability.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <span class="material-symbols-outlined">trending_up</span>
+                                </div>
+                                <h3>Continuous Improvement</h3>
+                                <p>Ongoing optimization of our quality management system and manufacturing processes.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <span class="material-symbols-outlined">fact_check</span>
+                                </div>
+                                <h3>Risk Management</h3>
+                                <p>Systematic approach to identifying and mitigating risks throughout production.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Certificate Document ===== -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <span class="section-label">Documentation</span>
+                <h2 class="section-heading">Our Certificate</h2>
+                <p class="section-description mx-auto">View our ISO 13485 certification document below, confirming our
+                    quality management system meets international standards.</p>
+            </div>
+            <div class="cert-embed reveal-scale">
+                <iframe src="ISO.pdf" title="ISO 13485 Certification Document"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="text-center reveal">
+                <h2 class="section-heading mb-3">Partner with a Certified Manufacturer</h2>
+                <p class="section-description mx-auto mb-4">Trust your medical device manufacturing to an ISO 13485
+                    certified facility with proven quality systems and experienced engineers.</p>
+                <div class="hero-buttons">
+                    <a href="mailto:carey@biospdc.com" class="btn-primary-custom">Request a Quote</a>
+                    <a href="about.html" class="btn-outline-custom">Learn About Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <hr class="glow-line">
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-brand">BIOS MEDICAL</div>
+                    <p class="footer-description">Precision medical device manufacturing and development. Your single
+                        source from concept to commercialization.</p>
+                    <div class="footer-social mt-3">
+                        <a href="https://www.linkedin.com/company/bios-medicalmanufacturing/" aria-label="LinkedIn"
+                            target="_blank" rel="noopener">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                                viewBox="0 0 16 16">
+                                <path
+                                    d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-heading">Navigation</h5>
+                    <ul class="footer-links">
+                        <li><a href="homepage.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="certification.html">Certification</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="homepage.html#engineering">Engineering Support</a></li>
+                        <li><a href="homepage.html#manufacturing">Manufacturing</a></li>
+                        <li><a href="homepage.html#quality">Quality Assurance</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">Contact</h5>
+                    <ul class="footer-links">
+                        <li><a href="mailto:carey@biospdc.com">carey@biospdc.com</a></li>
+                        <li><a href="https://maps.google.com/?q=1295+Nesbit+Dr+Nesbit+MS+38651" target="_blank"
+                                rel="noopener">1295 Nesbit Dr, Nesbit, MS 38651</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BIOS Medical. All rights reserved.</p>
+                <p>ISO 13485 Certified Medical Device Manufacturer</p>
+            </div>
+        </div>
     </footer>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
 
-    <!-- Bootstrap JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
-        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
-        crossorigin="anonymous"></script>
+    <!-- Scroll Animations & Header Behavior -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            revealElements.forEach(el => observer.observe(el));
+
+            // Header scroll effect
+            const header = document.getElementById('siteHeader');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }, { passive: true });
+        });
+    </script>
 </body>
 
 </html>
