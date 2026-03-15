@@ -13,6 +13,10 @@ import {
   ArrowRight,
   Clock,
   AlertCircle,
+  Gauge,
+  FileText,
+  Package,
+  ShoppingCart,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -24,6 +28,21 @@ const weeklyCompletions = [
   { label: "Fri", value: 4 },
   { label: "Sat", value: 1 },
   { label: "Sun", value: 0 },
+];
+
+const otdData = [
+  { label: "W1", value: 88 },
+  { label: "W2", value: 91 },
+  { label: "W3", value: 85 },
+  { label: "W4", value: 93 },
+  { label: "W5", value: 90 },
+  { label: "W6", value: 87 },
+  { label: "W7", value: 94 },
+  { label: "W8", value: 92 },
+  { label: "W9", value: 96 },
+  { label: "W10", value: 91 },
+  { label: "W11", value: 93 },
+  { label: "W12", value: 94 },
 ];
 
 const activeJobsSparkData = [
@@ -38,6 +57,12 @@ const ncrSparkData = [
 const revenueSparkData = [
   { value: 82000 }, { value: 95000 }, { value: 88000 }, { value: 102000 }, { value: 97000 }, { value: 114000 }, { value: 121000 },
 ];
+const utilizationSparkData = [
+  { value: 72 }, { value: 75 }, { value: 71 }, { value: 78 }, { value: 82 }, { value: 79 }, { value: 77 },
+];
+const quotesSparkData = [
+  { value: 4 }, { value: 6 }, { value: 5 }, { value: 8 }, { value: 7 }, { value: 9 }, { value: 7 },
+];
 
 const recentActivity = [
   { id: 1, type: "ncr", message: "NCR-2024-0044 opened for WO-2024-0897", time: "12 min ago", color: "text-status-red", Icon: AlertCircle },
@@ -45,6 +70,15 @@ const recentActivity = [
   { id: 3, type: "po", message: "PO-2024-0315 sent to Ensinger Plastics ($8,500)", time: "2 hr ago", color: "text-brand-500", Icon: ClipboardList },
   { id: 4, type: "overdue", message: "WO-2024-0892 is now 2 days overdue — attention required", time: "3 hr ago", color: "text-status-red", Icon: AlertTriangle },
   { id: 5, type: "schedule", message: "Scheduling updated for Haas UMC-500 — 3 jobs reshuffled", time: "Yesterday", color: "text-ink-400", Icon: Clock },
+];
+
+const alerts = [
+  { id: 1, type: "overdue-wo", message: "WO-2024-0892 — 2 days overdue", sub: "Surgical Clamp Handle · Haas ST-30", color: "border-l-status-red bg-red-50/40", dotColor: "bg-status-red", href: "/work-orders" },
+  { id: 2, type: "overdue-wo", message: "WO-2024-0889 — 5 days overdue", sub: "Spinal Cage Set × 12", color: "border-l-status-red bg-red-50/40", dotColor: "bg-status-red", href: "/work-orders" },
+  { id: 3, type: "late-po", message: "PO-2024-0311 — expected Mar 15, not received", sub: "Titanium Industries · Ti-6Al-4V Bar", color: "border-l-orange-400 bg-orange-50/40", dotColor: "bg-orange-400", href: "/purchasing" },
+  { id: 4, type: "ncr-aging", message: "NCR-2024-0040 open 18 days — no disposition", sub: "Assigned: J. Williams", color: "border-l-status-yellow bg-yellow-50/40", dotColor: "bg-status-yellow", href: "/quality/ncr" },
+  { id: 5, type: "low-stock", message: "Ti-6Al-4V Bar 2.5\" — 0 on hand", sub: "Needed by Mar 25 for WO-2024-0891", color: "border-l-brand-500 bg-brand-50/40", dotColor: "bg-brand-500", href: "/inventory" },
+  { id: 6, type: "low-stock", message: "TiAlN Endmill 1/2\" — 1 remaining (min: 3)", sub: "Tool crib replenishment required", color: "border-l-brand-500 bg-brand-50/40", dotColor: "bg-brand-500", href: "/inventory" },
 ];
 
 const activeOrders = workOrders.filter(
@@ -64,8 +98,8 @@ export default function DashboardPage() {
         subtitle="Good morning — here's your production overview for today."
       />
 
-      {/* KPI Row */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      {/* KPI Row — 6 cards in 2 rows of 3 */}
+      <div className="grid grid-cols-3 gap-4 mb-6">
         <KpiCard
           label="Active Jobs"
           value="24"
@@ -100,40 +134,51 @@ export default function DashboardPage() {
           sparkData={revenueSparkData}
           icon={<DollarSign size={15} />}
         />
+        <KpiCard
+          label="Machine Utilization"
+          value="77%"
+          delta={-1.4}
+          deltaLabel="vs last week"
+          sparkData={utilizationSparkData}
+          icon={<Gauge size={15} />}
+        />
+        <KpiCard
+          label="Open Quotes"
+          value="7"
+          delta={2}
+          deltaLabel="this week"
+          sparkData={quotesSparkData}
+          icon={<FileText size={15} />}
+        />
       </div>
 
-      {/* Main Content Grid */}
-      <div className="grid grid-cols-3 gap-4 mb-4">
+      {/* Charts row */}
+      <div className="grid grid-cols-2 gap-4 mb-4">
         {/* Weekly Completions Chart */}
-        <div className="col-span-2">
-          <SectionCard
-            title="Jobs Completed This Week"
-            subtitle="By day — current week"
-            actions={
-              <span className="text-xs text-ink-400">Mar 18–24, 2024</span>
-            }
-          >
-            <BarChart data={weeklyCompletions} color="#0066FF" />
-          </SectionCard>
-        </div>
+        <SectionCard
+          title="Jobs Completed This Week"
+          subtitle="By day — current week"
+          actions={
+            <span className="text-xs text-ink-400">Mar 18–24, 2024</span>
+          }
+        >
+          <BarChart data={weeklyCompletions} color="#0066FF" />
+        </SectionCard>
 
-        {/* Recent Activity */}
-        <SectionCard title="Recent Activity">
-          <ul className="space-y-3">
-            {recentActivity.map((item) => (
-              <li key={item.id} className="flex items-start gap-2.5">
-                <item.Icon size={14} className={`mt-0.5 flex-shrink-0 ${item.color}`} />
-                <div className="min-w-0">
-                  <p className="text-xs text-ink-700 leading-snug">{item.message}</p>
-                  <p className="text-[10px] text-ink-300 mt-0.5">{item.time}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
+        {/* On-Time Delivery Trend */}
+        <SectionCard
+          title="On-Time Delivery"
+          subtitle="12-week rolling trend"
+          actions={
+            <span className="text-xs text-ink-400">Jan – Mar 2024</span>
+          }
+        >
+          <BarChart data={otdData} color="#10B981" />
         </SectionCard>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      {/* Bottom grid: active jobs + due dates + alerts */}
+      <div className="grid grid-cols-3 gap-4">
         {/* Active Jobs */}
         <SectionCard
           title="Active Jobs"
@@ -214,6 +259,31 @@ export default function DashboardPage() {
               ))}
             </tbody>
           </table>
+        </SectionCard>
+
+        {/* Alerts Panel */}
+        <SectionCard
+          title="Alerts"
+          subtitle="Items requiring attention"
+          actions={
+            <span className="text-xs font-semibold text-status-red">{alerts.length} active</span>
+          }
+        >
+          <div className="space-y-2">
+            {alerts.map((alert) => (
+              <Link
+                key={alert.id}
+                href={alert.href}
+                className={`flex items-start gap-2.5 px-3 py-2.5 rounded-lg border-l-2 transition-colors hover:brightness-95 ${alert.color}`}
+              >
+                <div className={`w-1.5 h-1.5 rounded-full flex-shrink-0 mt-1 ${alert.dotColor}`} />
+                <div className="min-w-0">
+                  <p className="text-xs font-medium text-ink-800 leading-snug">{alert.message}</p>
+                  <p className="text-[10px] text-ink-400 mt-0.5">{alert.sub}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
         </SectionCard>
       </div>
     </div>

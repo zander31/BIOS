@@ -34,6 +34,27 @@ const jobsByMachine = machines.map((machine) => ({
   jobs: scheduledJobs.filter((j) => j.machine === machine),
 }));
 
+// Capacity data: scheduled vs available hours per machine per week
+const weeks = ["Mar 18–22", "Mar 25–29", "Apr 1–5"];
+const capacityData = [
+  { machine: "Haas ST-30",         available: [40, 40, 40], scheduled: [32, 38, 24], outsideOp: null },
+  { machine: "Haas UMC-500",       available: [40, 40, 40], scheduled: [36, 28, 40], outsideOp: null },
+  { machine: "Haas VF-4SS",        available: [40, 40, 40], scheduled: [28, 36, 32], outsideOp: null },
+  { machine: "Zeiss CMM",          available: [32, 32, 32], scheduled: [8, 6, 12],   outsideOp: null },
+  { machine: "Manual Station 2",   available: [40, 40, 40], scheduled: [24, 20, 16], outsideOp: null },
+  { machine: "Chem Tank B",        available: [24, 24, 24], scheduled: [4, 6, 8],    outsideOp: "Mar 23" },
+  { machine: "Packaging Station",  available: [40, 40, 40], scheduled: [12, 16, 20], outsideOp: null },
+];
+
+// Jobs with "Must Leave By" date for outside processing operations
+const jobsWithMustLeave = [
+  ...scheduledJobs,
+  // annotate the passivation job with a "must leave by" field (simulated)
+].map((j) => ({
+  ...j,
+  mustLeaveBy: j.machine === "Chem Tank B" ? "Mar 22" : null,
+}));
+
 export default function SchedulingPage() {
   return (
     <div>
@@ -67,8 +88,22 @@ export default function SchedulingPage() {
         ))}
       </div>
 
+      {/* Tab strip */}
+      <div className="flex gap-1 mb-4 bg-surface-100 p-1 rounded-xl w-fit">
+        {["Gantt", "Capacity"].map((tab, i) => (
+          <div
+            key={tab}
+            className={`px-4 py-1.5 rounded-lg text-sm font-medium cursor-pointer transition-all ${
+              i === 0 ? "bg-surface-0 text-ink-900 shadow-sm" : "text-ink-500 hover:text-ink-700"
+            }`}
+          >
+            {tab}
+          </div>
+        ))}
+      </div>
+
       {/* Gantt Chart */}
-      <SectionCard title="Machine Schedule" noPadding>
+      <SectionCard title="Machine Schedule" noPadding className="mb-4">
         <div className="overflow-x-auto">
           {/* Header row */}
           <div className="flex border-b border-surface-200">
@@ -153,12 +188,88 @@ export default function SchedulingPage() {
         </div>
       </SectionCard>
 
+      {/* Capacity Planning View */}
+      <div className="border-t border-surface-200 pt-6 mb-4">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h2 className="text-lg font-semibold text-ink-900">Capacity Planning</h2>
+            <p className="text-sm text-ink-500">Scheduled vs available hours by machine — next 3 weeks</p>
+          </div>
+          {/* Legend */}
+          <div className="flex items-center gap-4">
+            {[
+              { label: "< 70% — Available", color: "bg-status-green" },
+              { label: "70–90% — Near Capacity", color: "bg-status-yellow" },
+              { label: "> 90% — Overloaded", color: "bg-status-red" },
+            ].map(({ label, color }) => (
+              <div key={label} className="flex items-center gap-1.5">
+                <div className={`w-2.5 h-2.5 rounded-sm ${color}`} />
+                <span className="text-[11px] text-ink-500">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <SectionCard noPadding>
+          {/* Header */}
+          <div className="flex border-b border-surface-100">
+            <div className="w-44 flex-shrink-0 px-5 py-3">
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-ink-300">Machine</span>
+            </div>
+            {weeks.map((week) => (
+              <div key={week} className="flex-1 px-4 py-3">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-ink-300">{week}</span>
+              </div>
+            ))}
+            <div className="w-28 px-4 py-3">
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-ink-300">Must Leave By</span>
+            </div>
+          </div>
+
+          {/* Machine rows */}
+          {capacityData.map((row) => (
+            <div key={row.machine} className="flex items-center border-b border-surface-100 last:border-0 hover:bg-surface-50 transition-colors">
+              <div className="w-44 flex-shrink-0 px-5 py-4">
+                <span className="text-xs font-medium text-ink-700">{row.machine}</span>
+              </div>
+              {weeks.map((week, wi) => {
+                const util = row.scheduled[wi] / row.available[wi];
+                const pct = Math.round(util * 100);
+                const barColor = util < 0.7 ? "bg-status-green" : util < 0.9 ? "bg-status-yellow" : "bg-status-red";
+                const textColor = util < 0.7 ? "text-status-green" : util < 0.9 ? "text-status-yellow" : "text-status-red";
+                return (
+                  <div key={week} className="flex-1 px-4 py-4">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className={`text-xs font-semibold ${textColor}`}>{pct}%</span>
+                      <span className="text-[10px] text-ink-400">{row.scheduled[wi]}h / {row.available[wi]}h</span>
+                    </div>
+                    <div className="w-full h-2 bg-surface-100 rounded-full overflow-hidden">
+                      <div
+                        className={`h-full rounded-full transition-all ${barColor}`}
+                        style={{ width: `${Math.min(100, pct)}%` }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+              <div className="w-28 px-4 py-4">
+                {row.outsideOp ? (
+                  <span className="text-xs font-medium text-status-red">{row.outsideOp}</span>
+                ) : (
+                  <span className="text-xs text-ink-300">—</span>
+                )}
+              </div>
+            </div>
+          ))}
+        </SectionCard>
+      </div>
+
       {/* Job List */}
-      <SectionCard title="All Scheduled Jobs" className="mt-4" noPadding>
+      <SectionCard title="All Scheduled Jobs" noPadding>
         <table className="w-full">
           <thead>
             <tr className="border-b border-surface-100">
-              {["WO #", "Part", "Operation", "Machine", "Operator", "Start", "End", "Status"].map((h) => (
+              {["WO #", "Part", "Operation", "Machine", "Operator", "Start", "End", "Must Leave By", "Status"].map((h) => (
                 <th key={h} className="text-left text-[10px] font-semibold uppercase tracking-wider text-ink-300 px-5 py-3">
                   {h}
                 </th>
@@ -166,7 +277,7 @@ export default function SchedulingPage() {
             </tr>
           </thead>
           <tbody className="divide-y divide-surface-100">
-            {scheduledJobs.map((job) => (
+            {jobsWithMustLeave.map((job) => (
               <tr key={job.id} className="hover:bg-surface-50 transition-colors">
                 <td className="px-5 py-3 text-sm font-medium text-brand-500">{job.woNumber}</td>
                 <td className="px-5 py-3 text-sm text-ink-700 max-w-[160px] truncate">{job.partName}</td>
@@ -175,6 +286,13 @@ export default function SchedulingPage() {
                 <td className="px-5 py-3 text-sm text-ink-700">{job.operator}</td>
                 <td className="px-5 py-3 text-sm text-ink-500">{new Date(job.startDate).toLocaleDateString("en-US", { month: "short", day: "numeric" })}</td>
                 <td className="px-5 py-3 text-sm text-ink-500">{new Date(job.endDate).toLocaleDateString("en-US", { month: "short", day: "numeric" })}</td>
+                <td className="px-5 py-3">
+                  {job.mustLeaveBy ? (
+                    <span className="text-xs font-medium text-status-red">{job.mustLeaveBy}</span>
+                  ) : (
+                    <span className="text-xs text-ink-300">—</span>
+                  )}
+                </td>
                 <td className="px-5 py-3">
                   <StatusBadge status={job.status} size="sm" />
                 </td>

@@ -15,6 +15,10 @@ import {
   BarChart3,
   Settings,
   ChevronRight,
+  FileText,
+  MonitorSpeaker,
+  Wrench,
+  Activity,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -50,6 +54,15 @@ const navGroups: NavGroup[] = [
       { label: "Inventory", href: "/inventory", icon: Boxes },
       { label: "Quality", href: "/quality", icon: ShieldCheck },
       { label: "Purchasing", href: "/purchasing", icon: ShoppingCart },
+    ],
+  },
+  {
+    label: "Shop Floor",
+    items: [
+      { label: "Quoting", href: "/quoting", icon: FileText },
+      { label: "Shop Floor", href: "/shop-floor", icon: MonitorSpeaker },
+      { label: "Tooling", href: "/tooling", icon: Wrench },
+      { label: "Maintenance", href: "/maintenance", icon: Activity },
     ],
   },
   {

@@ -4,7 +4,8 @@ import { SectionCard } from "@/components/shared/SectionCard";
 import { StatusBadge } from "@/components/shared/StatusBadge";
 import { ncrs, inspections } from "@/lib/mock-data/quality";
 import { formatDate } from "@/lib/utils";
-import { ArrowRight, ShieldCheck, AlertTriangle, FileCheck, BookOpen } from "lucide-react";
+import { ArrowRight, ShieldCheck, AlertTriangle, FileCheck, BookOpen, ClipboardCheck, CalendarCheck } from "lucide-react";
+import { capas, audits } from "@/lib/mock-data/quality";
 
 const openNCRs = ncrs.filter((n) => n.status !== "Closed" && n.status !== "Voided");
 const passRate = Math.round(
@@ -44,12 +45,14 @@ export default function QualityPage() {
       </div>
 
       {/* Module cards */}
-      <div className="grid grid-cols-2 gap-4 mb-6">
+      <div className="grid grid-cols-3 gap-4 mb-6">
         {[
           { href: "/quality/ncr", icon: AlertTriangle, label: "Non-Conformances", count: `${openNCRs.length} open`, desc: "Track, investigate, and resolve quality escapes" },
           { href: "/quality/inspections", icon: FileCheck, label: "Inspections", count: `${inspections.length} total`, desc: "First article, in-process, final, and receiving" },
           { href: "/quality/documents", icon: BookOpen, label: "Documents", count: "8 docs", desc: "Procedures, work instructions, forms, specs" },
-          { href: "#", icon: ShieldCheck, label: "Audits", count: "Next: Apr 10", desc: "Internal and external audit schedule and records" },
+          { href: "/quality/capa", icon: ClipboardCheck, label: "CAPA", count: `${capas.filter((c) => c.status !== "Closed").length} open`, desc: "Corrective & preventive actions — 5-Why root cause analysis" },
+          { href: "/quality/audits", icon: CalendarCheck, label: "Audits", count: `${audits.filter((a) => a.status === "Scheduled").length} scheduled`, desc: "Internal, external, customer and supplier audits" },
+          { href: "#", icon: ShieldCheck, label: "Certifications", count: "ISO 13485 · AS9100", desc: "Current certifications and renewal tracking" },
         ].map(({ href, icon: Icon, label, count, desc }) => (
           <Link key={label} href={href} className="bg-surface-0 rounded-xl shadow-card p-5 flex items-start gap-4 hover:shadow-card-md transition-shadow group">
             <div className="w-10 h-10 bg-brand-50 rounded-xl flex items-center justify-center flex-shrink-0">
