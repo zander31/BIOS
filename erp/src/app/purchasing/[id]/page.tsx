@@ -7,6 +7,10 @@ import { StatusBadge } from "@/components/shared/StatusBadge";
 import { purchaseOrders, poLineItems, suppliers } from "@/lib/mock-data/purchasing";
 import { formatDate, formatCurrency } from "@/lib/utils";
 
+export function generateStaticParams() {
+  return purchaseOrders.map((po) => ({ id: po.id }));
+}
+
 export default function PODetailPage({ params }: { params: { id: string } }) {
   const po = purchaseOrders.find((p) => p.id === params.id);
   if (!po) notFound();

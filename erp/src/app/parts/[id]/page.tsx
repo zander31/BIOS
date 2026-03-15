@@ -7,6 +7,10 @@ import { parts } from "@/lib/mock-data/parts";
 import { workOrderRoutingSteps } from "@/lib/mock-data/work-orders";
 import { formatDate, formatCurrency } from "@/lib/utils";
 
+export function generateStaticParams() {
+  return parts.map((p) => ({ id: p.id }));
+}
+
 export default function PartDetailPage({ params }: { params: { id: string } }) {
   const part = parts.find((p) => p.id === params.id);
   if (!part) notFound();

@@ -8,6 +8,10 @@ import { customers } from "@/lib/mock-data/customers";
 import { workOrders } from "@/lib/mock-data/work-orders";
 import { formatDate, formatCurrency } from "@/lib/utils";
 
+export function generateStaticParams() {
+  return customers.map((c) => ({ id: c.id }));
+}
+
 export default function CustomerDetailPage({ params }: { params: { id: string } }) {
   const customer = customers.find((c) => c.id === params.id);
   if (!customer) notFound();

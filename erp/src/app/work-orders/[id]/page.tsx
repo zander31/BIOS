@@ -8,6 +8,10 @@ import { formatDate, formatCurrency } from "@/lib/utils";
 import { Check, Clock, Circle, ChevronLeft, DollarSign, Package, AlertTriangle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+export function generateStaticParams() {
+  return workOrders.map((wo) => ({ id: wo.id }));
+}
+
 export default function WorkOrderDetailPage({ params }: { params: { id: string } }) {
   const wo = workOrders.find((w) => w.id === params.id);
   if (!wo) notFound();
